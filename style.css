@@ -8,10 +8,22 @@ header {
   text-align: center;
   margin-bottom: 20px;
 }
+h1 {
+  margin-bottom: 10px;
+}
+button, select, input {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
 table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 th, td {
   padding: 10px;
@@ -20,4 +32,22 @@ th, td {
 }
 th {
   background-color: #d0e4f5;
+}
+.modal {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.hidden {
+  display: none;
+}
+label {
+  display: block;
+  margin-bottom: 10px;
 }
