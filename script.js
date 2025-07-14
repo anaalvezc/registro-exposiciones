@@ -47,7 +47,8 @@ function guardarAnimal(event) {
     madre,
     hijos: animales[nombre]?.hijos || [],
     foto,
-    exposiciones: animales[nombre]?.exposiciones || []
+    exposiciones: animales[nombre]?.exposiciones || [],
+    pesos: animales[nombre]?.pesos || []
   };
 
   actualizarSelector();
@@ -87,13 +88,15 @@ function mostrarAnimal(nombre) {
     <br><br>
     <button onclick="mostrarFormulario('${a.nombre}')">✏️ Editar Datos</button>
     <button onclick="agregarExposicion('${a.nombre}')">➕ Agregar Exposición</button>
+    <button onclick="agregarPeso('${a.nombre}')">➕ Registrar Peso</button>
     <h3>Exposiciones</h3>
-    <table>
-      <thead><tr><th>Evento</th><th>Año</th><th>Premio</th></tr></thead>
-      <tbody>
-        ${a.exposiciones.map(e => `<tr><td>${e.evento}</td><td>${e.año}</td><td>${e.premio}</td></tr>`).join("")}
-      </tbody>
-    </table>
+    <table><thead><tr><th>Evento</th><th>Año</th><th>Premio</th></tr></thead><tbody>
+    ${a.exposiciones.map(e => `<tr><td>${e.evento}</td><td>${e.año}</td><td>${e.premio}</td></tr>`).join("")}
+    </tbody></table>
+    <h3>Pesos Registrados</h3>
+    <table><thead><tr><th>Fecha</th><th>Peso (kg)</th></tr></thead><tbody>
+    ${a.pesos.map(p => `<tr><td>${p.fecha}</td><td>${p.kg}</td></tr>`).join("")}
+    </tbody></table>
   `;
 
   div.innerHTML = html;
@@ -105,6 +108,14 @@ function agregarExposicion(nombre) {
   const premio = prompt("Premio recibido:");
   if (!evento || !año || !premio) return;
   animales[nombre].exposiciones.push({ evento, año, premio });
+  mostrarAnimal(nombre);
+}
+
+function agregarPeso(nombre) {
+  const fecha = prompt("Fecha (ej: 2024-08-18):");
+  const kg = prompt("Peso en kg:");
+  if (!fecha || !kg) return;
+  animales[nombre].pesos.push({ fecha, kg });
   mostrarAnimal(nombre);
 }
 
