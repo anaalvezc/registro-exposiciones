@@ -13,19 +13,32 @@
     <select id="selectorAnimal" onchange="mostrarAnimalSeleccionado()">
       <option value="">-- Seleccionar Animal --</option>
     </select>
+    <div class="orden">
+      <button onclick="ordenarPorEdad()">Ordenar por Edad</button>
+      <button onclick="ordenarPorSexo()">Ordenar por Sexo</button>
+      <button onclick="ordenarPorRaza()">Ordenar por Raza</button>
+    </div>
   </header>
 
-  <main id="main-content">
-    <!-- Acá se carga el contenido del animal -->
-  </main>
+  <main id="main-content"></main>
 
   <div id="formulario-container" class="modal hidden">
-    <form id="formularioAnimal" onsubmit="agregarAnimal(event)">
-      <h2>Agregar Nuevo Animal</h2>
+    <form id="formularioAnimal" onsubmit="guardarAnimal(event)">
+      <h2 id="tituloFormulario">Agregar Nuevo Animal</h2>
       <label>Nombre: <input type="text" id="nombre" required /></label>
       <label>Raza: <input type="text" id="raza" /></label>
       <label>Año de nacimiento: <input type="number" id="año" /></label>
+      <label>Sexo:
+        <select id="sexo">
+          <option value="">--</option>
+          <option value="Hembra">Hembra</option>
+          <option value="Macho">Macho</option>
+        </select>
+      </label>
+      <label>Padre: <input type="text" id="padre" /></label>
+      <label>Madre: <input type="text" id="madre" /></label>
       <label>Foto (URL): <input type="text" id="foto" /></label>
+      <input type="hidden" id="editandoNombre" />
       <button type="submit">Guardar</button>
       <button type="button" onclick="ocultarFormulario()">Cancelar</button>
     </form>
