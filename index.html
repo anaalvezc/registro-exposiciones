@@ -9,25 +9,27 @@
 <body>
   <header>
     <h1>Registro de Exposiciones 🐑</h1>
+    <button onclick="mostrarFormulario()">➕ Agregar Animal</button>
+    <select id="selectorAnimal" onchange="mostrarAnimalSeleccionado()">
+      <option value="">-- Seleccionar Animal --</option>
+    </select>
   </header>
 
-  <main>
-    <table id="tabla-premios">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Evento</th>
-          <th>Año</th>
-          <th>Premio</th>
-          <th>Raza</th>
-          <th>Foto</th>
-        </tr>
-      </thead>
-      <tbody id="cuerpo-tabla">
-        <!-- Los datos se cargan desde script.js -->
-      </tbody>
-    </table>
+  <main id="main-content">
+    <!-- Acá se carga el contenido del animal -->
   </main>
+
+  <div id="formulario-container" class="modal hidden">
+    <form id="formularioAnimal" onsubmit="agregarAnimal(event)">
+      <h2>Agregar Nuevo Animal</h2>
+      <label>Nombre: <input type="text" id="nombre" required /></label>
+      <label>Raza: <input type="text" id="raza" /></label>
+      <label>Año de nacimiento: <input type="number" id="año" /></label>
+      <label>Foto (URL): <input type="text" id="foto" /></label>
+      <button type="submit">Guardar</button>
+      <button type="button" onclick="ocultarFormulario()">Cancelar</button>
+    </form>
+  </div>
 
   <script src="script.js"></script>
 </body>
