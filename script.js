@@ -1,5 +1,17 @@
 let animales = {};
 
+function guardarEnLocalStorage() {
+  localStorage.setItem("animales", JSON.stringify(animales));
+}
+
+function cargarDesdeLocalStorage() {
+  const data = localStorage.getItem("animales");
+  if (data) {
+    animales = JSON.parse(data);
+    actualizarSelector();
+  }
+}
+
 function mostrarFormulario(nombre = "") {
   document.getElementById("formulario-container").classList.remove("hidden");
   document.getElementById("tituloFormulario").textContent = nombre ? "Editar Animal" : "Agregar Nuevo Animal";
@@ -51,6 +63,7 @@ function guardarAnimal(event) {
     pesos: animales[nombre]?.pesos || []
   };
 
+  guardarEnLocalStorage();
   actualizarSelector();
   ocultarFormulario();
   mostrarAnimal(nombre);
@@ -108,6 +121,7 @@ function agregarExposicion(nombre) {
   const premio = prompt("Premio recibido:");
   if (!evento || !año || !premio) return;
   animales[nombre].exposiciones.push({ evento, año, premio });
+  guardarEnLocalStorage();
   mostrarAnimal(nombre);
 }
 
@@ -116,6 +130,7 @@ function agregarPeso(nombre) {
   const kg = prompt("Peso en kg:");
   if (!fecha || !kg) return;
   animales[nombre].pesos.push({ fecha, kg });
+  guardarEnLocalStorage();
   mostrarAnimal(nombre);
 }
 
@@ -134,3 +149,7 @@ function ordenarPorRaza() {
   animales = Object.fromEntries(ordenado);
   actualizarSelector();
 }
+
+// 🔄 Al cargar la página:
+window.onload = cargarDesdeLocalStorage;
+
